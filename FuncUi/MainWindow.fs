@@ -1,16 +1,13 @@
-namespace CounterApp
+namespace App
 
 open Avalonia.FuncUI.DSL
 open DataExchange.Drivers
 open ComponentsView
-open System.Threading.Tasks
 open Avalonia.Controls
 open Avalonia.Layout
 open Elmish
-open System.Threading
-open System
 
-module Counter =
+module MainWindow =
 
     type State =
         { connecting: bool
@@ -18,13 +15,7 @@ module Counter =
 
     let init () =
         ({ connecting = false
-           components =
-             [
-               // createDriver (new ACSMotionController("10.0.0.100"))
-               createDriver (new HT61())
-               createDriver (new KjlSparc())
-               // createDriver (new PLC("opc.tcp://192.168.0.50:484"))
-             ]},
+           components = [ createDriver (new ExampleTool()); createDriver (new ExampleTool()) ] },
          Cmd.none)
 
     type Msg =
@@ -32,10 +23,6 @@ module Counter =
         | Connect
         | OnConnect
         | Connected
-
-
-
-
     // we collect a bunch of task and perform them, and when all done  send a message back
     // the taks mutate state of the objecst
     let toAsync (d: Driver) =
@@ -46,7 +33,6 @@ module Counter =
             let! _ = List.map (toAsync) components |> Async.Parallel
             ()
         }
-
 
     let update (msg: Msg) (state: State) : (State * Cmd<Msg>) =
         match msg with
@@ -95,18 +81,17 @@ module Counter =
                                         Button.horizontalAlignment HorizontalAlignment.Center ]
                           ) ]
                     // rest
-                    Border.create[Border.cornerRadius 5
-                                  Border.padding 5
-                                  Border.margin 5
-                                  Border.borderThickness 1
-                                  //Border.background "yellow"
-                                  Border.child (
-                                      StackPanel.create
-                                          [ StackPanel.orientation Orientation.Vertical
-                                            StackPanel.children (
-                                                List.map (fun diver -> view diver dispatch) state.components
-                                            ) ]
-                                  )] ] ]
+                    Border.create
+                        [ Border.cornerRadius 5
+                          Border.padding 5
+                          Border.margin 5
+                          Border.borderThickness 1
+                          //Border.background "yellow"
+                          Border.child (
+                              StackPanel.create
+                                  [ StackPanel.orientation Orientation.Vertical
+                                    StackPanel.children (List.map (fun diver -> view diver dispatch) state.components) ]
+                          ) ] ] ]
 
     let view (state: State) (dispatch) =
         TabControl.create

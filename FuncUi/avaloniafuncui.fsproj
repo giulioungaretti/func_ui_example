@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Effects.fs" />
+    <Compile Include="Driver.fs" />
     <Compile Include="ComponentsView.fs" />
     <Compile Include="MainWindow.fs" />
     <Compile Include="Program.fs" />
@@ -15,8 +15,6 @@
     <PackageReference Include="Avalonia.FuncUI.Elmish" Version="1.1.0" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0" />
     <PackageReference Include="Elmish" Version="4.1.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataExchange\DataExchange.csproj" />
+    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
   </ItemGroup>
 </Project>

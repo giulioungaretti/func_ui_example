@@ -1,4 +1,4 @@
-﻿namespace CounterApp
+﻿namespace App
 
 open Avalonia
 open Avalonia.Controls.ApplicationLifetimes
@@ -8,29 +8,29 @@ open Avalonia.FuncUI.Hosts
 open Elmish
 
 
-type MainWindow() as this =
+type Window() as this =
     inherit HostWindow()
 
     do
-        base.Title <- "Counter Example"
+        base.Title <- "Func UI Example"
 
-        Elmish.Program.mkProgram Counter.init Counter.update Counter.view
-        |> Program.withSubscription Counter.subscribe
+        Elmish.Program.mkProgram MainWindow.init MainWindow.update MainWindow.view
+        |> Program.withSubscription MainWindow.subscribe
         |> Program.withHost this
         |> Program.withConsoleTrace
         |> Program.runWithAvaloniaSyncDispatch ()
-//|> Program.run
 
 
 type App() =
     inherit Application()
 
     override this.Initialize() = this.Styles.Add(FluentTheme())
+    // TODO: configure based on os preference
     // this.RequestedThemeVariant <- Styling.ThemeVariant.Dark
 
     override this.OnFrameworkInitializationCompleted() =
         match this.ApplicationLifetime with
-        | :? IClassicDesktopStyleApplicationLifetime as desktopLifetime -> desktopLifetime.MainWindow <- MainWindow()
+        | :? IClassicDesktopStyleApplicationLifetime as desktopLifetime -> desktopLifetime.MainWindow <- Window()
         | _ -> ()
 
 module Program =
