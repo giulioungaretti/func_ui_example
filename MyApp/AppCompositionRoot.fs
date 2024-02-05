@@ -1,7 +1,6 @@
 namespace MyApp
 
 open ReactiveElmish.Avalonia
-open Microsoft.Extensions.DependencyInjection
 open MyApp.ViewModels
 open MyApp.Views
 
@@ -10,10 +9,9 @@ type AppCompositionRoot() =
 
     let mainView = MainWindow()
 
-    override this.RegisterServices services = base.RegisterServices(services) // Auto-registers view models
-    // Add any additional services
+    override _.RegisterServices services = base.RegisterServices(services) // Auto-registers view models
 
-    override this.RegisterViews() =
-        Map [ VM.Key<MainViewModel>(), View.Singleton(mainView)
-              VM.Key<CounterViewModel>(), View.Singleton<CounterView>()
+    override _.RegisterViews() =
+        Map [ VM.Key<MainWindowViewModel>(), View.Singleton(mainView)
+              VM.Key<ContentViewModel>(), View.Singleton<ContentView>()
                ]

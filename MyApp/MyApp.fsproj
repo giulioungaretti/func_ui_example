@@ -8,12 +8,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Driver.fs" />
-    <Compile Include="Views/CounterView.axaml.fs" />
     <Compile Include="Views/ComponentView.axaml.fs" />
+    <Compile Include="Views\ContentView.axaml.fs" />
     <Compile Include="Views/MainWindow.axaml.fs" />
     <Compile Include="ViewModels/App.fs" />
-    <Compile Include="ViewModels/CounterViewModel.fs" />
     <Compile Include="ViewModels/ComponentViewModel.fs" />
+    <Compile Include="ViewModels\ContentViewModel.fs" />
     <Compile Include="ViewModels\MainWindowViewModel.fs" />
     <Compile Include="AppCompositionRoot.fs" />
     <Compile Include="App.axaml.fs" />
@@ -26,6 +26,7 @@
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.6" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
+    <PackageReference Include="DynamicData" Version="8.3.27" />
     <PackageReference Include="ReactiveElmish.Avalonia" Version="1.2.0" />
     <PackageReference Include="System.IO.Ports" Version="8.0.0" />
   </ItemGroup>

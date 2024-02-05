@@ -5,47 +5,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="MyApp.Views.MainWindow"
         xmlns:vm="using:MyApp.ViewModels"
-        xmlns:controls="clr-namespace:MyApp.Views"
-        x:DataType="vm:MainViewModel"
-        Design.DataContext="{Binding Source={x:Static vm:MainViewModel.DesignVM}}"
+        x:DataType="vm:MainWindowViewModel"
+        Design.DataContext="{Binding Source={x:Static vm:MainWindowViewModel.DesignVM}}"
         Title="MyApp">
-    <!-- <ContentControl Content="{Binding ContentView}" /> -->
-    <TabControl
-        TabStripPlacement="Left">
-        <TabItem Header="Counter">
-            <DockPanel>
-                <Border
-                    CornerRadius="5"
-                    Padding="5"
-                    Margin="5"
-                    BorderThickness="1"
-                    BorderBrush="Black"
-                    DockPanel.Dock="Bottom">
-                    <Button
-                        Content="Bind me"
-                        IsEnabled="True"
-                        HorizontalAlignment="Center">
-                    </Button>
-                </Border>
-                <Border
-                    CornerRadius="5"
-                    Padding="5"
-                    Margin="5"
-                    BorderThickness="1"
-                    BorderBrush="Black"
-                    DockPanel.Dock="Top">
-                    <StackPanel
-                        Orientation="Vertical">
-                        <ItemsControl ItemsSource="{Binding Componentlist }">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <controls:ComponentView />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </Border>
-            </DockPanel>
-        </TabItem>
-    </TabControl>
+     <ContentControl Content="{Binding ContentView}" /> 
 </Window>

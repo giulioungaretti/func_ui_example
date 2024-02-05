@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:controls="clr-namespace:MyApp.Views"
+             xmlns:vm="using:MyApp.ViewModels"
+             x:Class="MyApp.Views.ContentView"
+             x:DataType="vm:ContentViewModel"
+             Design.DataContext="{Binding Source={x:Static vm:ContentViewModel.DesignVM}}">
+    <TabControl
+        TabStripPlacement="Left">
+        <TabItem Header="Counter">
+            <DockPanel>
+                <Border
+                    CornerRadius="5"
+                    Padding="5"
+                    Margin="5"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    DockPanel.Dock="Bottom">
+                    <Button
+                        Content="ConnectAll"
+                        Command="{Binding ConnectAll}"
+                        IsEnabled="{Binding ConnectIsEnabled}"
+                        HorizontalAlignment="Center">
+                    </Button>
+                </Border>
+                <Border
+                    CornerRadius="5"
+                    Padding="5"
+                    Margin="5"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    DockPanel.Dock="Top">
+                    <StackPanel
+                        Orientation="Vertical">
+                        <ItemsControl ItemsSource="{Binding Componentlist }">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:ComponentView />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </DockPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

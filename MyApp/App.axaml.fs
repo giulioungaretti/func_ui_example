@@ -14,7 +14,7 @@ type App() =
         match this.ApplicationLifetime with
         | :? IClassicDesktopStyleApplicationLifetime as desktop ->
             let appRoot = AppCompositionRoot()
-            desktop.MainWindow <- appRoot.GetView<ViewModels.MainViewModel>() :?> Window
+            desktop.MainWindow <- appRoot.GetView<ViewModels.MainWindowViewModel>() :?> Window
         | _ -> ()
 
         base.OnFrameworkInitializationCompleted()

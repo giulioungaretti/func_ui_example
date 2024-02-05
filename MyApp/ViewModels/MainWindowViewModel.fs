@@ -3,12 +3,13 @@ namespace MyApp.ViewModels
 open ReactiveElmish
 open ReactiveElmish.Avalonia
 
-type MainViewModel(root: CompositionRoot) =
-        inherit ReactiveElmishViewModel()
+// this view model tracks only the main window state
+type MainWindowViewModel(root: CompositionRoot) =
+    inherit ReactiveElmishViewModel()
 
-        member this.ContentView =
-            // root.GetView<CounterViewModel>()
-            this.BindOnChanged(App.app, (fun m -> m.View), (fun m -> root.GetView<CounterViewModel>()))
+    member this.ContentView =
+        // root.GetView<CounterViewModel>()
+        this.BindOnChanged(App.app, (fun m -> m.View), (fun m -> root.GetView<ContentViewModel>()))
     //         app,
     //         _.View,
     //         fun m ->
@@ -25,9 +26,5 @@ type MainViewModel(root: CompositionRoot) =
     // member this.ShowCounter() = app.Dispatch(SetView CounterView)
     // member this.ShowAbout() = app.Dispatch(SetView AboutView)
     // member this.ShowFilePicker() = app.Dispatch(SetView FilePickerView)
-        member this.Componentlist : ComponentViewModel list   = [
-             new ComponentViewModel(Dummytool())
-             new ComponentViewModel(Dummytool())
-        ]
-        static member DesignVM = new MainViewModel(Design.stub)
+    static member DesignVM = new MainWindowViewModel(Design.stub)
 

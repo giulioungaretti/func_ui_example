@@ -16,16 +16,21 @@
             Orientation="Vertical"
             HorizontalAlignment="Left">
             <TextBlock
-                Text="{Binding Driver.Name}"
+                Text="{Binding Name}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center">
             </TextBlock>
             <SelectableTextBlock
-                Text="{Binding Driver.Status}"
+                Text="{Binding Status}"
                 TextWrapping="Wrap"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center">
             </SelectableTextBlock>
+            <Button 
+              IsEnabled="{Binding EanbleConnectButton}"
+              Command="{Binding Connect}">
+            Connect 
+          </Button>
         </StackPanel>
     </Border>
 </UserControl>
