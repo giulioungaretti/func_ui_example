@@ -14,4 +14,6 @@ type AppCompositionRoot() =
     // Add any additional services
 
     override this.RegisterViews() =
-        Map [ VM.Key<MainViewModel>(), View.Singleton(mainView) ]
+        Map [ VM.Key<MainViewModel>(), View.Singleton(mainView)
+              VM.Key<CounterViewModel>(), View.Singleton<CounterView>()
+               ]
